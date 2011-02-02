@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+	<meta charset="utf-8">
+	<title>Accesskey plugin example</title>
+	<link rel=stylesheet href="jquery.accesskey.css">
+	
+	<h1>jQuery accesskey plugin</h1>
+	<p>
+		There is an attribute on <abbr>HTML</abbr> elements,
+		called <em>accesskey</em>.
+		In theory, you set it to a letter, like <kbd>a</kbd>,
+		and the browsers provide a convenient way to shortcut focus to that element.
+		However, there is an important problem with the implementation of that feature.
+		Users are not informed of the possibility in any known browser.
+	</p>
+	<p>
+		This plugin provides a solution.
+		It allows to use a simple shortcut of pressing the corresponding key,
+			without any modifiers. Try pressing a letter <kbd>a</kbd> now.
+		<button accesskey="a">Have you now jumped here?</button>
+	</p>
+	<p>
+		In addition, it informs users about the possibility to use these shortcuts by 
+			triggering helpful hints on the press of <kbd>Tab</kbd> button.
+		Try it now!
+	</p>
+	<h2>Use it</h2>
+	<p>
+		<a href="jquery.accesskey.min.js" accesskey="d">
+			Download the script</a>
+		and
+		<a href="jquery.accesskey.css" accesskey="d">
+			the styles</a>.			
+	</p>
+	
+	<h2>Example content</h2>
+	<h3>Simple</h3>
+	<p>
+		<a href="#g" accesskey="g">Google</a> is a big company.
+		Compare it with 
+		<a href="#m" accesskey="m">Microsoft</a>, another big company.
+	</p>
+
+	<h3>Repeated accesskey</h3>
+	<p>
+		What if some elements have the same accesskey?
+		Let us see.
+	</p>
+	<ul>
+		<li><a href="#b1" accesskey="b">Barnie</a>
+		<li><a href="#b2" accesskey="b">Bill</a>
+		<li><a href="#b3" accesskey="b">Buck</a>
+	</ul>
+	
+	<h3>Forms</h3>
+	<form action="#">
+		<p>
+			You can shorcut straight to input elements.
+		</p>
+		<p>
+			<label>
+				Name: <input accesskey="n">
+			</label>
+		</p>
+		<p>
+			<label>
+				Life choice:
+				<select accesskey="c">
+					<option value="1">Go ahead</option>
+					<option value="2">Go around</option>
+					<option value="3">Go back</option>
+				</select>
+			</label>
+		</p>
+		<p>
+			Naturally, you cannot jump out of a text entry box.
+		</p>
+	</form>
+	
+	<h2>Credits and license</h2>
+	<p>
+		The code is created by me,
+		<a href="http://sokolov.cc/" accesskey="d">Denis Sokolov</a>.
+		It
+		<a href="https://github.com/Akral/jQuery-Accesskey" accesskey="s">is released</a>
+		under
+		<a href="LICENSE" accesskey="l">GPLv3</a>.
+	</p>
+	
+	<script src="jquery-1.5.min.js"></script>
+	<script src="jquery.accesskey.js"></script>
