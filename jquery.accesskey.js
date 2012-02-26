@@ -41,8 +41,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			if (tag == 'input' && el.attr('type') != 'submit')
 				return true;
 			return false;
-		},
-	}
+		}
+	};
 
 	
 	// Init adds labels to the elements
@@ -60,7 +60,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		// Trigger redraw to enable transitions
 		// Do not understand? Just comment this line and see the result, it's hard to explain
 		$('body').width();
-	}
+	};
 
 
 	// Main internal controller
@@ -68,18 +68,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		var body = $('body');
 		var shown = false;
 		var api = {
-			'show': function() { body.addClass('accesskey-shown'); shown = true },
-			'hide': function() { body.removeClass('accesskey-shown'); shown = false },
-			'shown': function() { return shown }
-		}
+			show: function() { body.addClass('accesskey-shown'); shown = true; },
+			hide: function() { body.removeClass('accesskey-shown'); shown = false; },
+			shown: function() { return shown; }
+		};
 		api['preview'] = function() {
 			if (shown) return true;
 			api.show();
 			setTimeout(function(){
 				api.hide();
 			}, 6000);
-		}
-		return api
+		};
+		return api;
 	})();
 
 
@@ -103,28 +103,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	// Working with DOM
 	var elements = {
 		'getByKey': function(sym){
-			var sym = sym.toLowerCase();
-			try { var els = $('[accesskey="'+sym+'"]'); }
+			var els;
+			sym = sym.toLowerCase();
+			try { els = $('[accesskey="'+sym+'"]'); }
 			catch (err) { return false; }
-			if (els.length == 0)
-				return false;
-			return els;
+			return els.length ? els : false;
 		},
 		'getNextTarget': function(els){
 			// If only one element, choose itself
 			if (els.length == 1)
-				return els.eq(0)
+				return els.eq(0);
 
 			// Find a focused element
-			f = els.filter(function(){ return $$.focused(this) });
-			if (f.length == 0 || $$.focused(els.eq(-1)))
+			f = els.filter(function(){ return $$.focused(this); });
+			if (!f.length || $$.focused(els.eq(-1)))
 				// Focus could be somewhere else, then just focus the first one
-				return els.eq(0)
+				return els.eq(0);
 			else
 				// Move on to the next element after the focused
 				return els.eq(els.index(f)+1);
-		},
-	}
+		}
+	};
 
 	// Shortcut keys
 	$(window).bind('keypress.jquery-accesskey', function(e){
