@@ -21,6 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		- accesskey on label adds accesskey char to the input
 */
 (function($){
+	var HINT_KEY = 9,
+		HINT_TIMEOUT = 6000;
+
 	// I would use jQuery.sub() to have our own jQuery, but
 	// it did not work with .extend($.expr[':']) for whatever reason.
 	var $$ = {
@@ -77,7 +80,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			api.show();
 			setTimeout(function(){
 				api.hide();
-			}, 6000);
+			}, HINT_TIMEOUT);
 		};
 		return api;
 	})();
@@ -91,7 +94,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			$(document.activeElement).blur();
 			hints.preview();
 		}
-		if (e.which == 9)
+		if (e.which == HINT_KEY)
 		{
 			// Tab button trigger
 			// We show hints for 6 seconds when somebody presses the Tab key
@@ -138,4 +141,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		// Prevent the letter from being put into the field
 		if ($$.writable(target)) return false;
 	});
+
+	$.accesskey = function(options){
+		if ('hint_key' in options)
+			HINT_KEY = options.hint_key;
+		if ('hint_timeout' in options)
+			HINT_TIMEOUT = options.hint_timeout;
+	};
 })(jQuery);
