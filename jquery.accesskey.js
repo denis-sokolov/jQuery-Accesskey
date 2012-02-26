@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 (function($){
 	var HINT_KEY = 9,
+		HINT_HIDE_ANY = false,
 		HINT_TIMEOUT = 6000;
 
 	// I would use jQuery.sub() to have our own jQuery, but
@@ -101,6 +102,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			if (init) init();
 			hints.preview();
 		}
+		else if (HINT_HIDE_ANY)
+		{
+			hints.hide();
+		}
 	});
 
 	// Working with DOM
@@ -147,5 +152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			HINT_KEY = options.hint_key;
 		if ('hint_timeout' in options)
 			HINT_TIMEOUT = options.hint_timeout;
+		if ('hint_hide_anykey' in options)
+			HINT_HIDE_ANY = options.hint_hide_anykey;
 	};
 })(jQuery);
